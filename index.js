@@ -259,7 +259,9 @@ var appServer = function(config) {
         self.instance = self.express.listen(self.config.port, self.config.host);
         self.log("listening on http://" + self.config.host + ":" + self.config.port);
       } else {
-        self.instance = self.express.listen(self.config.port);
+	 	    var http = require('http').Server( self.express );
+	  	  self.instance = http.listen( self.config.port );
+	  	  // self.instance = self.express.listen(self.config.port);
         self.log("listening on http port " + self.config.port);
       }
     }
